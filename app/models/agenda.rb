@@ -5,6 +5,6 @@ class Agenda < ApplicationRecord
     validates :desc, presence: true, length: { minimum: 10 }
     validates :priority, presence: true, inclusion: {
         in: priorities.keys,
-        message: "%{value} is not a valid priority, must be one of: #{priorities.keys.join(', ')}"
-    }
+        message: "%{value} is not a valid priority"
+    }  
 end
