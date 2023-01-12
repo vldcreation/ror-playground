@@ -30,12 +30,14 @@ module Api
 
                 desc "Create a todo"
                 params do
+                    requires :user_id, type: Integer, desc: "User id."
                     requires :title, type: String, desc: "Todo title."
                     requires :desc, type: String, desc: "Todo description."
                     requires :priority, type: String, desc: "Todo priority."
                 end
                 post do
                     @agenda = Agenda.new(
+                        user_id: params[:user_id],
                         title: params[:title],
                         desc: params[:desc],
                         priority: params[:priority]
@@ -55,6 +57,7 @@ module Api
                 desc "Update a todo"
                 params do
                     requires :id, type: Integer, desc: "Todo id."
+                    requires :user_id, type: Integer, desc: "User id."
                     optional :title, type: String, desc: "Todo title."
                     optional :desc, type: String, desc: "Todo description."
                     optional :priority, type: String, desc: "Todo priority."
@@ -65,6 +68,7 @@ module Api
                         @agenda = Agenda.find(params[:id])
                         error!("Not Found", 404) unless @agenda
                         if @agenda.update(
+                            user_id: params[:user_id] || @agenda.user_id,
                             title: params[:title] || @agenda.title,
                             desc: params[:desc] || @agenda.desc,
                             priority: params[:priority] || @agenda.priority
@@ -101,7 +105,7 @@ module Api
                     end
                 end
 
-                
+
 
             end
         end

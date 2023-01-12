@@ -1,4 +1,7 @@
 class Agenda < ApplicationRecord
+    # belongs to user
+    belongs_to :user
+
     enum priority: { low: 1, medium: 2, high: 3, urgent: 4, critical: 5 }
 
     validates :title, presence: true, length: { minimum: 5 }

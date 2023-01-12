@@ -10,11 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_01_09_092002) do
+ActiveRecord::Schema[7.0].define(version: 2023_01_11_072006) do
   create_table "agendas", force: :cascade do |t|
     t.string "title"
     t.text "desc"
     t.integer "priority", default: 0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "user_id"
+    t.index ["user_id"], name: "index_agendas_on_user_id"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "username"
+    t.string "email"
+    t.string "password"
+    t.datetime "registered_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
