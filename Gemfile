@@ -50,6 +50,8 @@ group :development do
   # gem "spring"
 end
 
+# set up enviroment to file
+gem "dotenv-rails"
 
 gem "grape", "~> 1.7"
 gem 'grape-entity'

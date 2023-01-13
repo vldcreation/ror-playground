@@ -16,10 +16,10 @@
 development:
   adapter: postgresql
   encoding: unicode
-  database: privy_dev
+  database: <%= ENV['PG_DATABASE'] %>
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  username: postgres
-  password: secret
+  username: <%= ENV['PG_USERNAME'] %>
+  password: <%= ENV['PG_PASSWORD'] %>
   timeout: 5000
 
 # Warning: The database defined as "test" will be erased and
@@ -34,8 +34,8 @@ test:
   encoding: unicode
   database: privy_dev_test
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  username: postgres
-  password: secret
+  username: <%= ENV['PG_USERNAME'] %>
+  password: <%= ENV['PG_PASSWORD'] %>
   timeout: 5000
 
 # production:

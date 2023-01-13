@@ -10,10 +10,9 @@ module Api
                                 requires :user_id, type: Integer, desc: "User id"
                             end
                             get "/" do
-                                user = User.includes(:agenda).find(params[:user_id])
-                                error!("Not Found", 404) unless user
-                                present :user, user, with: Api::V1::Users::Entities::Usere
-                                present :agenda, user.agenda, with: Api::V1::UserAgenda::Entities::Agendae
+                                data = User.includes(:agenda).find(params[:user_id])
+                                error!("Not Found", 404) unless data
+                                present :data, data, with: Api::V1::UserAgenda::Entities::UserAgendae
                             end
 
                             desc "Create a user agenda"
