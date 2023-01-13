@@ -1,6 +1,11 @@
 class Agenda < ApplicationRecord
     # belongs to user
-    belongs_to :user
+    belongs_to(
+        :user,
+        class_name: "User",
+        foreign_key: "user_id",
+        inverse_of: :agenda
+    )
 
     enum priority: { low: 1, medium: 2, high: 3, urgent: 4, critical: 5 }
 
